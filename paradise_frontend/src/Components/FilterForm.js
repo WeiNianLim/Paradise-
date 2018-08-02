@@ -1,24 +1,34 @@
-import React from "react";
+import React, {Component} from "react";
 
-const Form = () => {
+class Form extends Component {
+  render(){
   return (
     <div>
-      <form>
-        Where would you like to go?:<br />
-        <input type="text" name="firstname" />
-        <br />
-        Departure Date:<br/>
-        <input type="date" name="departdate" />
-        <br />
-        Return Date:<br />
-        <input type="date" name="departdate" />
-        <br />
-        Budgeted amount:<br />
-        <input type="text" name="Budget" />
-        <br />
+
+      <div>
+      <form className='searchForm'>
+        <div className='row text-left'>
+          <div className='col-2 offset-4'>
+                City:<br />
+                <input type="text" name="firstname" />
+                <br />
+                Departure Date:<br />
+                <input type="text" name="DepartDate" />
+                <br />
+            </div>
+            <div className='col-2'>
+                Budget:<br />
+                <input type="text" name="Budget" />
+                <br />
+                Return Date:<br />
+                <input type="text" name="ReturnDate" />
+                <br />
+            </div>
+          </div>
       </form>
+      </div>
     </div>
   );
-};
+};}
 
 export default Form;
