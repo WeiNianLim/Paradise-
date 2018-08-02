@@ -12,7 +12,7 @@ class Form extends Component {
                   <input type="text" name="City" required />
                   <br />
                   Departure Date:<br />
-                  <input type="text" name="DepartDate" required/>
+                  <input type="date" name="DepartDate" required/>
                   <br />
               </div>
               <div className='col-2'>
@@ -20,7 +20,7 @@ class Form extends Component {
                   <input type="text" name="Budget" required/>
                   <br />
                   Return Date:<br />
-                  <input type="text" name="ReturnDate" required />
+                  <input type="date" name="ReturnDate" required />
                   <br />
               </div>
             </div>
