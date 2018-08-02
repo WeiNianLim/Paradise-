@@ -10,8 +10,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-            
             <Switch>
               <Route exact path='/' render={()=>
               <Home />
@@ -20,8 +18,6 @@ class App extends Component {
                 <Form />
               }/>
             </Switch>
-            
-            
       </div>
     );
   }
