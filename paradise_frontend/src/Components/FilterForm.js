@@ -6,25 +6,26 @@ class Form extends Component {
     <div>
 
       <div>
-      <form className='searchForm'>
+      <form method="post" action="/search" className='searchForm' autocomplete="off">
         <div className='row text-left'>
           <div className='col-2 offset-4'>
                 City:<br />
-                <input type="text" name="firstname" />
+                <input type="text" name="City" required />
                 <br />
                 Departure Date:<br />
-                <input type="text" name="DepartDate" />
+                <input type="text" name="DepartDate" required/>
                 <br />
             </div>
             <div className='col-2'>
                 Budget:<br />
-                <input type="text" name="Budget" />
+                <input type="text" name="Budget" required/>
                 <br />
                 Return Date:<br />
-                <input type="text" name="ReturnDate" />
+                <input type="text" name="ReturnDate" required />
                 <br />
             </div>
           </div>
+          <button type="submit" class="btn btn-success">Submit</button>
       </form>
       </div>
     </div>
