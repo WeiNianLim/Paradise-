@@ -1,11 +1,9 @@
 const express = require('express')
 const app = express()
 const axios = require('axios')
-const request = require('request')
 const port = process.argv[2] || 8080
 
 const apiKey = '-IxP22jhNAIYesa0OK8lZvKWJLjOLVfXiseq4JgfBVzGlr3QbKRjlVErQ_OhkQ2bAgtUkevXXwnZf2H_CM2n_gyg21zlZ9ut8BJRgtz-eZH9XYW7jiOUFty9LHVjW3Yx';
-const client = yelp.client(apiKey);
 
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + apiKey;
 
