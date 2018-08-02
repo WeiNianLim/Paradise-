@@ -4,16 +4,16 @@ const Form = () => {
   return (
     <div>
       <form>
-        City:<br />
+        Where would you like to go?:<br />
         <input type="text" name="firstname" />
         <br />
-        Departure Date:<br />
-        <input type="text" name="DepartDate" />
+        Departure Date:<br/>
+        <input type="date" name="departdate" />
         <br />
         Return Date:<br />
-        <input type="text" name="ReturnDate" />
+        <input type="date" name="departdate" />
         <br />
-        Budget:<br />
+        Budgeted amount:<br />
         <input type="text" name="Budget" />
         <br />
       </form>
