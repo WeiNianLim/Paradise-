@@ -11,10 +11,11 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
-
-    state = {
-      flightsInfo : [],
-      restaurants: this.props.restaurants
+  constructor(){
+    super()
+    this.state = {
+      flightsReturn : [],
+      flightsDeparture : []
     }
   
 
@@ -34,6 +35,16 @@ class App extends Component {
 
   }
 
+  // componentDidMount(){
+  //   axios.get('/search')
+  //       .then((response)=>{
+  //         console.log(response.data)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  // }
+
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
       from,
@@ -45,9 +56,11 @@ class App extends Component {
     .then((response) => {
       console.log(response.data[0])
         this.setState({
-          flightsInfo : response.data[1].connections
+          flightsDeparture : response.data[1].connections,
+          flightsReturn : response.data[2].connections,
         })
         console.log(response.data[1].connections)
+        console.log(response.data[2].connections)
       })
       .catch((error) => {
         console.log(error);
@@ -97,10 +110,14 @@ class App extends Component {
           <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
+<<<<<<< Updated upstream
             render={() => <Flights flights={this.state.flightsInfo}
                                    getDepFlights={this.getDepFlights}
                                    getRetFlights={this.getRetFlights}
              />}
+=======
+            render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
+>>>>>>> Stashed changes
           />
           <Route
             path="/itinerary"
