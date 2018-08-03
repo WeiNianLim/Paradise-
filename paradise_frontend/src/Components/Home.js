@@ -7,10 +7,10 @@ class Home extends Component {
         return(
             <div>
                 <div className='col-4 offset-4 homeButton'>
-                    <h5>Take me to</h5>
+                    <h4>Take me to</h4>
                 </div>
                 <div className='col-4 offset-4'>
-                <Link to='/form'><button className='btn btn-lg btn-outline-dark'><h1 className='homeTitle'>Paradise</h1></button></Link>
+                <Link to='/form'><button className='btn bnpmtn-lg btn-outline-dark'><h1 className='homeTitle'>Paradise</h1></button></Link>
                     
                 </div>
             </div>
