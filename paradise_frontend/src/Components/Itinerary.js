@@ -8,9 +8,7 @@ class Itinerary extends Component {
     return (
       <div>
         <h1>August 10,2018</h1>
-        {console.log(this.props.restaurantState)}
         {this.props.restaurants.map((item, index) => {
-          console.log(item.name);
           return (
               <div className="ItineraryItem">
             <Activity
@@ -22,6 +20,7 @@ class Itinerary extends Component {
               }
               item={this.props.restaurants[index]}
               removeItem={this.props.removeItem}
+              refreshItem={this.props.refreshItem}
             />
             </div>
           );

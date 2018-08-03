@@ -10,48 +10,52 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
+  state = {
+    flightsInfo: [],
+    restaurants: this.props.restaurants
+  };
 
-    state = {
-      flightsInfo : [],
-      restaurants: this.props.restaurants
-    }
-  
-
-  removeItemHandler = (id) => {
+  removeItemHandler = id => {
     let itineraryArray = [...this.state.restaurants];
-    let index = itineraryArray.findIndex((res) => res.id === id)
-    itineraryArray.splice(index, 1)
+    let index = itineraryArray.findIndex(res => res.id === id);
+    itineraryArray.splice(index, 1);
     this.setState({
       restaurants: itineraryArray
-    })
-  }
+    });
+  };
 
-  refreshItemHandler=(id)=>{
-    let itineraryArray=[...this.state.restaurants];
-    let index=itineraryArray.findIndex((res) => res.id === id)
-    
-
-  }
+  refreshItemHandler = id => {
+    let itineraryArray = [...this.state.restaurants];
+    let index = itineraryArray.findIndex(res => res.id === id);
+    itineraryArray.splice(index, 1,
+      itineraryArray[Math.floor(Math.random() * itineraryArray.length - 1)]
+    );
+    console.log(itineraryArray);
+    this.setState({
+      restaurants: itineraryArray
+    });
+  };
 
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
-    axios.post('/search', {
-      from,
-      to,
-      departureDate,
-      returnDate,
-      restaurantBudget
-    })
-    .then((response) => {
-      console.log(response.data[0])
+    axios
+      .post("/search", {
+        from,
+        to,
+        departureDate,
+        returnDate,
+        restaurantBudget
+      })
+      .then(response => {
+        console.log(response.data[0]);
         this.setState({
-          flightsInfo : response.data[1].connections
-        })
-        console.log(response.data[1].connections)
+          flightsInfo: response.data[1].connections
+        });
+        console.log(response.data[1].connections);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   saveLogin = (name, password) => {
     axios
@@ -81,20 +85,26 @@ class App extends Component {
             path="/login"
             render={() => <LoginForm saveLogin={this.saveLogin} />}
           />
-          
-          <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
+
+          <Route
+            path="/form"
+            render={() => <Form mainSearchForm={this.mainSearchForm} />}
+          />
           <Route
             path="/flights"
             render={() => <Flights flights={this.state.flightsInfo} />}
           />
           <Route
             path="/itinerary"
-            render={() => <Itinerary 
-              removeItem={this.removeItemHandler}
-              restaurants={this.state.restaurants} />}
+            render={() => (
+              <Itinerary
+                removeItem={this.removeItemHandler}
+                restaurants={this.state.restaurants}
+                refreshItem={this.refreshItemHandler}
+              />
+            )}
           />
         </Switch>
-
       </div>
     );
   }
