@@ -12,61 +12,79 @@ import axios from "axios";
 
 class App extends Component {
   state = {
-    restaurants: this.props.restaurants,
+    restaurants: [],
+    displayRestaurants: [],
     flightsReturn: [],
     flightsDeparture: []
   };
 
-  removeItemHandler = (id) => {
-    let itineraryArray = [...this.state.restaurants];
+  removeItemHandler = id => {
+    let itineraryArray = [...this.state.displayRestaurants];
+    console.log(itineraryArray);
     let index = itineraryArray.findIndex(res => res.id === id);
+    console.log(index);
     itineraryArray.splice(index, 1);
-    this.setState({
-      restaurants: itineraryArray
-    });
+    console.log(itineraryArray);
+    this.setState({ displayRestaurants: itineraryArray });
   };
 
   refreshItemHandler = id => {
-    let itineraryArray = [...this.state.restaurants];
-    let index = itineraryArray.findIndex(res => res.id === id);
-    itineraryArray.splice(index, 1,
-      itineraryArray[Math.floor(Math.random() * (itineraryArray.length - 1))]
+    let itineraryArray = [...this.state.displayRestaurants];
+    let restaurantsCopy = [...this.state.restaurants];
+    let displayIndex = itineraryArray.findIndex(res => res.id === id);
+    let restaurantsIndex = Math.floor(
+      Math.random() * (this.state.restaurants.length - 1)
     );
-    console.log(itineraryArray);
+    itineraryArray.splice(
+      displayIndex,
+      1,
+      this.state.restaurants[restaurantsIndex]
+    );
+    //removes from restaurants so there are no repeats
+    //restaurantsCopy.splice(restaurantsIndex, 1);
+    console.log(restaurantsCopy);
     this.setState({
-      restaurants: itineraryArray
+      displayRestaurants: itineraryArray,
+      restaurants: restaurantsCopy
     });
   };
 
-  componentDidMount(){
-    axios.get('/search')
-        .then((response)=>{
-          console.log(response.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+  componentDidMount() {
+    axios
+      .get("/search")
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
-    axios.post('/search', {
-      from,
-      to,
-      departureDate,
-      returnDate,
-      restaurantBudget
-    })
-    
-    .then((response) => {
-      this.setState({
-        restaurants: response.data[0].businesses
+    axios
+      .post("/search", {
+        from,
+        to,
+        departureDate,
+        returnDate,
+        restaurantBudget
       })
+
+      .then(response => {
+        let displayRestaurants;
         this.setState({
-          flightsDeparture : response.data[1].connections,
-          flightsReturn : response.data[2].connections,
-        })
-        console.log(response.data[1].connections)
-        console.log(response.data[2].connections)
+          restaurants: response.data[0].businesses.slice(
+            3,
+            response.data[0].businesses.length
+          ),
+          displayRestaurants: response.data[0].businesses.slice(0, 3)
+        });
+        this.setState({
+          flightsDeparture: response.data[1].connections,
+          flightsReturn: response.data[2].connections
+        });
+        console.log(response.data[1].connections);
+        console.log(response.data[2].connections);
       })
       .catch(error => {
         console.log(error);
@@ -88,18 +106,13 @@ class App extends Component {
   };
 
   //-----flights page refresh function ----//
-  getDepFlights = () => {
-    
-  }
+  getDepFlights = () => {};
 
-  getRetFlights = () => {
-
-  }
+  getRetFlights = () => {};
 
   render() {
     return (
       <div className="App">
-     
         <Header />
 
         <Link to="/">Home</Link>
@@ -119,14 +132,19 @@ class App extends Component {
           />
           <Route
             path="/flights"
-            render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
+            render={() => (
+              <Flights
+                flightsReturn={this.state.flightsReturn}
+                flightsDeparture={this.state.flightsDeparture}
+              />
+            )}
           />
           <Route
             path="/itinerary"
             render={() => (
               <Itinerary
                 removeItem={this.removeItemHandler}
-                restaurants={this.state.restaurants.slice(0,3)}
+                restaurants={this.state.displayRestaurants}
                 refreshItem={this.refreshItemHandler}
               />
             )}
