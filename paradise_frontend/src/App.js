@@ -10,6 +10,21 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
+  
+  state={
+    restaurants:this.props.restaurants,
+  }
+
+  removeItemHandler = (id) => {
+    let itineraryArray = [...this.state.restaurants];
+    let index = itineraryArray.findIndex((res) => res.id === id)
+    itineraryArray.splice(index, 1)
+    this.setState({
+      restaurants:itineraryArray
+    })
+    console.log(this.state.restaurants)
+    console.log(itineraryArray)
+  }
 
   mainSearchForm = (city, departureDate, returnDate, budget) => {
     axios.post('/search', {
@@ -62,7 +77,9 @@ class App extends Component {
           />
           <Route
             path="/itinerary"
-            render={() => <Itinerary restaurants={this.props.restaurants} />}
+            render={() => <Itinerary 
+              removeItem={this.removeItemHandler}
+              restaurants={this.state.restaurants} />}
           />
         </Switch>
 

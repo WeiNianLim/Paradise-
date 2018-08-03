@@ -8,15 +8,13 @@ class Itinerary extends Component {
     this.state = {};
   }
 
-  removeItemHandler=(index)=>{
-
-  }
+ 
 
   render() {
     return (
       <div>
         <h1>August 10,2018</h1>
-        
+        {console.log(this.props.restaurantState)}
         {this.props.restaurants.map((item, index) => {
           console.log(item.name);
           return (
@@ -28,6 +26,8 @@ class Itinerary extends Component {
                  " " + 
                  item.location.display_address[1]
               }
+              item={this.props.restaurants[index]}
+              removeItem={this.props.removeItem}
             />
             </div>
           );
