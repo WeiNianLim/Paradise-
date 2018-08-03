@@ -45,7 +45,7 @@ class Flights extends Component {
             <div> 
                 <div className='flightsList'>
                     {departFlightsMapped.length > 0
-                     ? <h1 className='flightsTitle'>Flights departing from {this.props.flightsDeparture[0].scheduledFlight[0].departureAirportFsCode}</h1> 
+                     ? <h1 className='flightsTitle'>Departing flights from {this.props.flightsDeparture[0].scheduledFlight[0].departureAirportFsCode}</h1> 
                      : <h1>Please be patient</h1>}
                     {departFlightsMapped.length > 0  ? departFlightsMapped : <h1>Your flights are being loaded</h1>}
                 </div>
@@ -54,7 +54,7 @@ class Flights extends Component {
                 </div>
                 <div className='flightsList'>
                     {returnFlightsMapped.length > 0
-                        ? <h1 className='flightsTitle'>Flights departing from {this.props.flightsReturn[0].scheduledFlight[0].departureAirportFsCode}</h1> 
+                        ? <h1 className='flightsTitle'>Returning Flights from {this.props.flightsReturn[0].scheduledFlight[0].departureAirportFsCode}</h1> 
                         : <h1>Loading...</h1>}
                     {returnFlightsMapped.length > 0 ? returnFlightsMapped : <h1>....</h1>}
                 </div>
