@@ -26,24 +26,33 @@ app.get('/', (req, res) => {
 
 app.post('/search', (req, res) => {
     const { from, to, departureDate, returnDate, restaurantBudget } = req.body
-    console.log(departureDate)
-
     let priceStr = null
     if (restaurantBudget.length > 1)
         priceStr = restaurantBudget.slice(0, -1).join(',') + "," + restaurantBudget[restaurantBudget.length - 1]
     else priceStr = restaurantBudget[0]
-    departYear = departureDate.slice(0, 4)
-    departMonth = departureDate.slice(5, 7)
-    departDay = departureDate.slice(8, 10)
-    console.log(departDay)
+    console.log(departureDate)
+    console.log(returnDate)
+    console.log(restaurantBudget)
+    departYear = departureDate.slice(0,4)
+    departMonth = departureDate.slice(5,7)
+    departDay = departureDate.slice(8,10)
+    returnYear = returnDate.slice(0,4)
+    returnMonth = returnDate.slice(5,7)
+    returnDay = returnDate.slice(8,10)
+    
     axios.all([
-        axios.get(`https://api.yelp.com/v3/businesses/search?location=${to}&term=restaurants&price=${priceStr}&limit=50`),
-        axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/firstflightin/YVR/to/LAX/arriving_before/${departYear}/${departMonth}/${departDay}/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`)
-    ]).then(axios.spread(function (restaurantResponse, flightResponse) {
-        res.send([restaurantResponse.data, flightResponse.data])
-        console.log('Restaurant', restaurantResponse.data);
-        console.log('Flight', flightResponse.data);
-    }));
+            axios.get(`https://api.yelp.com/v3/businesses/search?location=${to}&term=restaurants&price=${priceStr}&limit=50`),
+            axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/firstflightin/YVR/to/LAX/arriving_before/${departYear}/${departMonth}/${departDay}/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`),
+            axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/lastflightin/LAX/to/YVR/arriving_before/${departYear}/${departMonth}/${departDay}/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`)
+        ]).then(axios.spread(function (restaurantResponse, flightDepartureResponse, flightReturningResponse){
+            res.send([restaurantResponse.data, flightDepartureResponse.data, flightReturningResponse.data])
+            console.log('Restaurant', restaurantResponse.data);
+            console.log('Flight Departure', flightDepartureResponse.data);
+            console.log('Flight Returning', flightReturningResponse.data);
+          }))
+          .catch((err) => {
+            console.log(err)
+          });
 })
 
 app.post('/login', (req, res) => {
