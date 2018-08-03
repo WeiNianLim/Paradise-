@@ -13,7 +13,7 @@ import axios from "axios";
 class App extends Component {
   state = {
     restaurants: this.props.restaurants,
-          flightsReturn: [],
+    flightsReturn: [],
     flightsDeparture: []
   };
 
@@ -30,7 +30,7 @@ class App extends Component {
     let itineraryArray = [...this.state.restaurants];
     let index = itineraryArray.findIndex(res => res.id === id);
     itineraryArray.splice(index, 1,
-      itineraryArray[Math.floor(Math.random() * itineraryArray.length - 1)]
+      itineraryArray[Math.floor(Math.random() * (itineraryArray.length - 1))]
     );
     console.log(itineraryArray);
     this.setState({
@@ -126,7 +126,7 @@ class App extends Component {
             render={() => (
               <Itinerary
                 removeItem={this.removeItemHandler}
-                restaurants={this.state.restaurants}
+                restaurants={this.state.restaurants.slice(0,3)}
                 refreshItem={this.refreshItemHandler}
               />
             )}

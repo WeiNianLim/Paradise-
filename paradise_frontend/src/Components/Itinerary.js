@@ -13,9 +13,6 @@ class Itinerary extends Component {
       window.print()
   }
 
-  removeItemHandler=(index)=>{
-
-  }
 
   render() {
     return (
@@ -25,20 +22,23 @@ class Itinerary extends Component {
         {this.props.restaurants.map((item, index) => {
           return (
               <div className="ItineraryItem">
-            <Activity
-              name={item.name}
-              contact={item.display_phone}
-              location={item.location.address1 +
-                 " " + 
-                 item.location.display_address[1]
-              }
-              item={this.props.restaurants[index]}
-              removeItem={this.props.removeItem}
-              refreshItem={this.props.refreshItem}
-            />
+              {this.props.restaurants.length > 1 
+               ?     <Activity
+                    name={item.name}
+                    contact={item.display_phone}
+                    location={item.location.address1 +
+                        " " + 
+                        item.location.display_address[1]
+                    }
+                    item={this.props.restaurants[index]}
+                    removeItem={this.props.removeItem}
+                    refreshItem={this.props.refreshItem}
+                    />
+                : <h1>Loading</h1>}
             </div>
           );
         })}
+            {console.log(this.props.restaurants)}
       </div>
     );
   }
