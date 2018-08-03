@@ -38,15 +38,15 @@ class App extends Component {
     });
   };
 
-  // componentDidMount(){
-  //   axios.get('/search')
-  //       .then((response)=>{
-  //         console.log(response.data)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  // }
+  componentDidMount(){
+    axios.get('/search')
+        .then((response)=>{
+          console.log(response.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+  }
 
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios
@@ -60,17 +60,11 @@ class App extends Component {
       .then(response => {
         console.log(response.data[0]);
         this.setState({
-<<<<<<< HEAD
-          flightsInfo: response.data[1].connections
-        });
-        console.log(response.data[1].connections);
-=======
           flightsDeparture : response.data[1].connections,
           flightsReturn : response.data[2].connections,
         })
         console.log(response.data[1].connections)
         console.log(response.data[2].connections)
->>>>>>> 8c8b5a887c8def2ec087746f1021517ee4c2c83c
       })
       .catch(error => {
         console.log(error);
