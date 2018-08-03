@@ -17,7 +17,7 @@ class App extends Component {
       flightsReturn : [],
       flightsDeparture : []
     }
-  
+  }
 
   removeItemHandler = (id) => {
     let itineraryArray = [...this.state.restaurants];
@@ -110,14 +110,7 @@ class App extends Component {
           <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
-<<<<<<< Updated upstream
-            render={() => <Flights flights={this.state.flightsInfo}
-                                   getDepFlights={this.getDepFlights}
-                                   getRetFlights={this.getRetFlights}
-             />}
-=======
             render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
->>>>>>> Stashed changes
           />
           <Route
             path="/itinerary"
