@@ -8,6 +8,10 @@ class Itinerary extends Component {
     this.state = {};
   }
 
+  removeItemHandler=(index)=>{
+
+  }
+
   render() {
     return (
       <div>
@@ -25,8 +29,6 @@ class Itinerary extends Component {
                  item.location.display_address[1]
               }
             />
-            <button>Delete</button>
-            <button>Refresh</button>
             </div>
           );
         })}
