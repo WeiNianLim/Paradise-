@@ -25,11 +25,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-    const { city, departureDate, returnDate, budget} = req.body
-    // dyear = departureDate.substring(0,4)
-    // dmonth = departureDate.substring(5,7)
-    // dday = departureDate.substring(8,10)
+    const { city, departureDate, returnDate, restaurantBudget} = req.body
     console.log(departureDate)
+    console.log(restaurantBudget)
 
     axios.all([
             axios.get(`https://api.yelp.com/v3/businesses/search?location=${city}&term=restaurants`),

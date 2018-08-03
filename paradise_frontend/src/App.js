@@ -11,13 +11,15 @@ import axios from "axios";
 
 class App extends Component {
 
-  mainSearchForm = (city, departureDate, returnDate, budget) => {
-    axios.post('/search', {
+  mainSearchForm = (city, departureDate, returnDate, restaurantBudget) => {
+    let postData = {
       city,
       departureDate,
       returnDate,
-      budget
-    })
+      restaurantBudget
+    }
+
+    axios.post('/search', postData)
       .then((response) => {
         console.log(response.data)
       })

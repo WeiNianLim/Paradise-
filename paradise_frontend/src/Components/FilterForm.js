@@ -11,13 +11,17 @@ class Form extends Component {
     return (
       <div>
         <div>
-          <form onSubmit={ (e) => {
+          <form onSubmit={(e) => {
             e.preventDefault()
-            const {City, DepartDate, ReturnDate, Budget } = e.target
-            this.props.mainSearchForm(City.value, DepartDate.value, ReturnDate.value, Budget.value )
+            const { City, DepartDate, ReturnDate, $, $$, $$$, $$$$ } = e.target
+            let tempBudget = [$,$$,$$$,$$$$].filter((item) => item.checked)
+            let restaurantBudget = tempBudget.map((item) => item.value)
+
+            this.props.mainSearchForm(City.value, DepartDate.value, ReturnDate.value, restaurantBudget)
             this.setState({
               loggedOn: true
-          })}} className='searchForm' autoComplete="off">
+            })
+          }} className='searchForm' autoComplete="off">
 
             <div className='row text-left'>
               <div className='col-2 offset-4'>
@@ -27,14 +31,38 @@ class Form extends Component {
                 Departure Date:<br />
                 <input type="date" name="DepartDate" required />
                 <br />
-              </div>
-              <div className='col-2'>
-                Budget:<br />
-                <input type="text" name="Budget" required />
-                <br />
                 Return Date:<br />
                 <input type="date" name="ReturnDate" required />
                 <br />
+              </div>
+              <div className='col-2'>
+                <fieldset>
+                  Per Meal Budget:
+                  <div>
+                    <input type="checkbox" id="$" name="$"
+                      value="1" />
+                    <label htmlFor="$">$1-$10</label>
+                  </div>
+
+                  <div>
+                    <input type="checkbox" id="$$" name="$$"
+                      value="2" />
+                    <label htmlFor="$$">$11-$30</label>
+                  </div>
+
+                  <div>
+                    <input type="checkbox" id="$$$" name="$$$"
+                      value="3" />
+                    <label htmlFor="$$$">$31-$60</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="$$$$" name="$$$$"
+                      value="4" />
+                    <label htmlFor="$$$$">$61+</label>
+                  </div>
+
+                </fieldset>
+               
               </div>
             </div>
             <button type="submit" className="btn btn-success">Submit</button>
