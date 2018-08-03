@@ -3,12 +3,6 @@ import Activity from "./Activity";
 import "./Itinerary.css"
 
 class Itinerary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
- 
 
   render() {
     return (

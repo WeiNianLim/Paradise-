@@ -8,7 +8,6 @@ const Activity = (props) => {
         <h6>Contact: {props.contact}</h6>
         <button onClick={()=>props.removeItem(props.item.id)}>Delete</button>
         <button>Refresh</button>
-        {console.log(props.item)}
         </div>
      );
 }
