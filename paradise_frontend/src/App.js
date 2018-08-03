@@ -11,29 +11,32 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
-  constructor(){
-    super()
-    this.state = {
-      flightsReturn : [],
-      flightsDeparture : []
-    }
-  }
+  state = {
+    restaurants: this.props.restaurants,
+          flightsReturn: [],
+    flightsDeparture: []
+  };
 
   removeItemHandler = (id) => {
     let itineraryArray = [...this.state.restaurants];
-    let index = itineraryArray.findIndex((res) => res.id === id)
-    itineraryArray.splice(index, 1)
+    let index = itineraryArray.findIndex(res => res.id === id);
+    itineraryArray.splice(index, 1);
     this.setState({
       restaurants: itineraryArray
-    })
-  }
+    });
+  };
 
-  refreshItemHandler=(id)=>{
-    let itineraryArray=[...this.state.restaurants];
-    let index=itineraryArray.findIndex((res) => res.id === id)
-    
-
-  }
+  refreshItemHandler = id => {
+    let itineraryArray = [...this.state.restaurants];
+    let index = itineraryArray.findIndex(res => res.id === id);
+    itineraryArray.splice(index, 1,
+      itineraryArray[Math.floor(Math.random() * itineraryArray.length - 1)]
+    );
+    console.log(itineraryArray);
+    this.setState({
+      restaurants: itineraryArray
+    });
+  };
 
   // componentDidMount(){
   //   axios.get('/search')
@@ -65,10 +68,10 @@ class App extends Component {
         console.log(response.data[1].connections)
         console.log(response.data[2].connections)
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   saveLogin = (name, password) => {
     axios
@@ -109,20 +112,26 @@ class App extends Component {
             path="/login"
             render={() => <LoginForm saveLogin={this.saveLogin} />}
           />
-          
-          <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
+
+          <Route
+            path="/form"
+            render={() => <Form mainSearchForm={this.mainSearchForm} />}
+          />
           <Route
             path="/flights"
             render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
           />
           <Route
             path="/itinerary"
-            render={() => <Itinerary 
-              removeItem={this.removeItemHandler}
-              restaurants={this.state.restaurants} />}
+            render={() => (
+              <Itinerary
+                removeItem={this.removeItemHandler}
+                restaurants={this.state.restaurants}
+                refreshItem={this.refreshItemHandler}
+              />
+            )}
           />
         </Switch>
-
       </div>
     );
   }

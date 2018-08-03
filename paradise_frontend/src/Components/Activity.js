@@ -7,7 +7,7 @@ const Activity = (props) => {
         <h5>Location: {props.location}</h5>
         <h6>Contact: {props.contact}</h6>
         <button onClick={()=>props.removeItem(props.item.id)}>Delete</button>
-        <button>Refresh</button>
+        <button onClick={()=>props.refreshItem(props.item.id)}>Refresh</button>
         </div>
      );
 }
