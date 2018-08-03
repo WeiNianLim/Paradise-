@@ -46,6 +46,7 @@ class Itinerary extends Component {
                 <Activity
                   name={item.name}
                   contact={item.display_phone}
+                  image={item.image_url}
                   location={
                     item.location.address1 +
                     " " +

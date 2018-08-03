@@ -75,3 +75,9 @@
   font-size: 10px;
   color: black;
 }
+
+.foodImage {
+  width: 120px;
+  height: auto;
+  padding-top: 10px;
+}
