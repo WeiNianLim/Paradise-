@@ -38,15 +38,15 @@ class App extends Component {
     });
   };
 
-  // componentDidMount(){
-  //   axios.get('/search')
-  //       .then((response)=>{
-  //         console.log(response.data)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  // }
+  componentDidMount(){
+    axios.get('/search')
+        .then((response)=>{
+          console.log(response.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+  }
 
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
