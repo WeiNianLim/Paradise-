@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+
 import Home from "./Components/Home";
 import Form from "./Components/FilterForm";
 import Header from "./Components/Header";
@@ -11,11 +12,12 @@ import axios from "axios";
 
 class App extends Component {
   state = {
-    flightsInfo: [],
-    restaurants: this.props.restaurants
+    restaurants: this.props.restaurants,
+          flightsReturn: [],
+    flightsDeparture: []
   };
 
-  removeItemHandler = id => {
+  removeItemHandler = (id) => {
     let itineraryArray = [...this.state.restaurants];
     let index = itineraryArray.findIndex(res => res.id === id);
     itineraryArray.splice(index, 1);
@@ -36,6 +38,16 @@ class App extends Component {
     });
   };
 
+  // componentDidMount(){
+  //   axios.get('/search')
+  //       .then((response)=>{
+  //         console.log(response.data)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  // }
+
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios
       .post("/search", {
@@ -48,9 +60,17 @@ class App extends Component {
       .then(response => {
         console.log(response.data[0]);
         this.setState({
+<<<<<<< HEAD
           flightsInfo: response.data[1].connections
         });
         console.log(response.data[1].connections);
+=======
+          flightsDeparture : response.data[1].connections,
+          flightsReturn : response.data[2].connections,
+        })
+        console.log(response.data[1].connections)
+        console.log(response.data[2].connections)
+>>>>>>> 8c8b5a887c8def2ec087746f1021517ee4c2c83c
       })
       .catch(error => {
         console.log(error);
@@ -70,9 +90,20 @@ class App extends Component {
         console.log(error);
       });
   };
+
+  //-----flights page refresh function ----//
+  getDepFlights = () => {
+    
+  }
+
+  getRetFlights = () => {
+
+  }
+
   render() {
     return (
       <div className="App">
+     
         <Header />
 
         <Link to="/">Home</Link>
@@ -92,7 +123,7 @@ class App extends Component {
           />
           <Route
             path="/flights"
-            render={() => <Flights flights={this.state.flightsInfo} />}
+            render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
           />
           <Route
             path="/itinerary"
