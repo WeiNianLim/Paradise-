@@ -42,9 +42,10 @@ class App extends Component {
       returnDate,
       restaurantBudget
     })
+    
     .then((response) => {
       this.setState({
-        restaurants: response.data[0].bussinesses
+        restaurants: response.data[0].businesses
       })
         this.setState({
           flightsInfo : response.data[1].connections
