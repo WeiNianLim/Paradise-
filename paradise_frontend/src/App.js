@@ -23,7 +23,8 @@ class App extends Component {
       departureDate,
       returnDate,
       restaurantBudget
-    }.then((response) => {
+    })
+    .then((response) => {
         this.setState({
           flightsInfo : response.data[1].connections
         })

@@ -25,7 +25,9 @@ class Form extends Component {
 
             <div className='row text-left'>
               <div className='col-2 offset-4'>
-                City:<br />
+                Leaving From:<br />
+                <input type="text" name="City" required />
+                Going to:<br />
                 <input type="text" name="City" required />
                 <br />
                 Departure Date:<br />
