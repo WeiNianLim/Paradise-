@@ -11,7 +11,8 @@ class Flights extends Component {
                     <div className="media flightCard">
                         <img className="mr-3 flightsImage" src="http://104.236.16.159/wp-content/uploads/2013/03/Screen-shot-2013-03-17-at-11.27.43-PM.png" alt="Generic placeholder image"/>
                         <div className="media-body text-left">
-                            <h5 className="mt-0">{flight.scheduledFlight[0].brand} Flight No: {flight.scheduledFlight[0].flightNumber}</h5>
+                            <h5 className="mt-0">{flight.scheduledFlight[0].departureAirportFsCode} -> {flight.scheduledFlight[0].arrivalAirportFsCode} </h5>
+                            <h6>{flight.scheduledFlight[0].brand} Flight No: {flight.scheduledFlight[0].flightNumber}</h6>
                             <span>Departure:   {flight.scheduledFlight[0].departureTime}</span><br/>
                             <span>Arrival:  {flight.scheduledFlight[0].arrivalTime}</span>
                         </div>
@@ -29,7 +30,8 @@ class Flights extends Component {
                     <div className="media flightCard">
                         <img className="mr-3 flightsImage" src="http://104.236.16.159/wp-content/uploads/2013/03/Screen-shot-2013-03-17-at-11.27.43-PM.png" alt="Generic placeholder image"/>
                         <div className="media-body text-left">
-                            <h5 className="mt-0">{flight.scheduledFlight[0].brand} Flight No: {flight.scheduledFlight[0].flightNumber}</h5>
+                            <h5 className="mt-0">{flight.scheduledFlight[0].departureAirportFsCode} -> {flight.scheduledFlight[0].arrivalAirportFsCode} </h5>
+                            <h6>{flight.scheduledFlight[0].brand} Flight No: {flight.scheduledFlight[0].flightNumber}</h6>
                             <span>Departure:   {flight.scheduledFlight[0].departureTime}</span><br/>
                             <span>Arrival:  {flight.scheduledFlight[0].arrivalTime}</span>
                         </div>
