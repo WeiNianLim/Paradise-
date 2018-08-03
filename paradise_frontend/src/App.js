@@ -10,18 +10,24 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      flightsInfo : []
+    }
+  }
 
   mainSearchForm = (city, departureDate, returnDate, restaurantBudget) => {
-    let postData = {
+    axios.post('/search', {
       city,
       departureDate,
       returnDate,
       restaurantBudget
-    }
-
-    axios.post('/search', postData)
-      .then((response) => {
-        console.log(response.data)
+    }.then((response) => {
+        this.setState({
+          flightsInfo : response.data[1].connections
+        })
+        console.log(response.data[1].connections)
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +66,7 @@ class App extends Component {
           <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
-            render={() => <Flights flights={this.props.flights} />}
+            render={() => <Flights flights={this.state.flightsInfo} />}
           />
           <Route
             path="/itinerary"
