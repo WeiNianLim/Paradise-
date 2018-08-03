@@ -21,9 +21,12 @@ app.get('/', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-    const { City } = req.body
+    const { city,
+        deptureDate,
+        returnDate,
+        budget } = req.body
 
-    axios.get(`https://api.yelp.com/v3/businesses/search?location=${City}&term=restaurants`)
+    axios.get(`https://api.yelp.com/v3/businesses/search?location=${city}&term=restaurants`)
         .then((response) => {
             console.log(response.data)
             res.send(response.data)

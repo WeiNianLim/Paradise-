@@ -12,10 +12,13 @@ class Form extends Component {
       <div>
         <div>
           <form onSubmit={ (e) => {
-            this.props.mainSearchForm(e.target)
+            e.preventDefault()
+            const {City, DepartDate, ReturnDate, Budget } = e.target
+            this.props.mainSearchForm(City.value, DepartDate.value, ReturnDate.value, Budget.value )
             this.setState({
               loggedOn: true
           })}} className='searchForm' autoComplete="off">
+
             <div className='row text-left'>
               <div className='col-2 offset-4'>
                 City:<br />
