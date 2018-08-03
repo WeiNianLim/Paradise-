@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router'
 
 class Form extends Component {
-
   state = {
-    loggedOn: false
+    showFlights: false
   }
-  
 
   render() {
     return (
@@ -19,8 +17,9 @@ class Form extends Component {
             let restaurantBudget = tempBudget.map((item) => item.value)
 
             this.props.mainSearchForm(From.value, To.value, DepartDate.value, ReturnDate.value, restaurantBudget)
+
             this.setState({
-              loggedOn: true
+              showFlights: true
             })
           }} className='searchForm' autoComplete="off">
 
@@ -63,15 +62,14 @@ class Form extends Component {
                       value="4" />
                     <label htmlFor="$$$$">$61+</label>
                   </div>
-
                 </fieldset>
                
               </div>
             </div>
             <button type="submit" className="btn btn-success">Submit</button>
           </form>
-          {this.state.loggedOn && <Redirect to='/login' />}
         </div>
+        {this.state.showFlights? <Redirect to='/flights' /> : ''}
       </div>
     );
   };

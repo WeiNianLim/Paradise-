@@ -72,7 +72,6 @@ class App extends Component {
       })
 
       .then(response => {
-        let displayRestaurants;
         this.setState({
           restaurants: response.data[0].businesses.slice(
             3,
@@ -133,10 +132,6 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-
-        <Link to="/">Home</Link>
-        <Link to="/flights">FLIGHTS</Link>
-        <Link to="/form">Form</Link>
         <Link to="/itinerary">Itinerary</Link>
         <Switch>
           <Route exact path="/" render={() => <Home />} />
