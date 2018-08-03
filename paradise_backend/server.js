@@ -25,7 +25,7 @@ app.post('/search', (req, res) => {
     axios.get(`https://api.yelp.com/v3/businesses/search?location=${City}&term=restaurants`)
         .then((response) => {
             console.log(response.data)
-            res.json(response.data)
+            res.send(response.data)
         })
         .catch((err) => {
             console.log(err)
