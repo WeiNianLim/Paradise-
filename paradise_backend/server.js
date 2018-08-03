@@ -13,7 +13,7 @@ app.listen(port, () => {
 })
 
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-    const { City, country } = req.body
+    const { City } = req.body
 
     axios.get(`https://api.yelp.com/v3/businesses/search?location=${City}&term=restaurants`)
         .then((response) => {

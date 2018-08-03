@@ -10,7 +10,7 @@ class Home extends Component {
                     <h5>Take me to</h5>
                 </div>
                 <div className='col-4 offset-4'>
-                <Link to='/login'><button className='btn btn-lg btn-outline-info'><h1 className='homeTitle'>Paradise</h1></button></Link>
+                <Link to='/form'><button className='btn btn-lg btn-outline-info'><h1 className='homeTitle'>Paradise</h1></button></Link>
                     
                 </div>
             </div>
