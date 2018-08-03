@@ -106,12 +106,17 @@ class App extends Component {
       });
   };
 
-  addFlight = (flight) => {
-    console.log(this.state.flightsBooked)
-    this.setState({
-      flightsBooked: this.state.flightsBooked.concat(flight)
-    },()=> {console.log(this.state.flightsBooked)})
-  }
+  addFlight = flight => {
+    console.log(this.state.flightsBooked);
+    this.setState(
+      {
+        flightsBooked: this.state.flightsBooked.concat(flight)
+      },
+      () => {
+        console.log(this.state.flightsBooked);
+      }
+    );
+  };
 
   //-----flights page refresh function ----//
   // getDepFlights = () => {
@@ -121,10 +126,8 @@ class App extends Component {
   // }
 
   // getRetFlights = () => {
-    
+
   // }
-  
-  
 
   render() {
     return (
@@ -148,10 +151,13 @@ class App extends Component {
           />
           <Route
             path="/flights"
-            render={() => <Flights flightsReturn={this.state.flightsReturn} 
-                                  flightsDeparture={this.state.flightsDeparture}
-                                  addFlight={this.addFlight}
-                                   />}
+            render={() => (
+              <Flights
+                flightsReturn={this.state.flightsReturn}
+                flightsDeparture={this.state.flightsDeparture}
+                addFlight={this.addFlight}
+              />
+            )}
           />
           <Route
             path="/itinerary"

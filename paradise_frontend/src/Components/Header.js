@@ -4,9 +4,7 @@ const Header = () => {
   return (
     <div>
       <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
-          Logo
-        </a>
+      <img  href="/" src="../Logo.png" style={{width:"75px"}} />        
         <button
           className="navbar-toggler"
           type="button"
