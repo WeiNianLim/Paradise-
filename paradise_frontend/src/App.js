@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     restaurants: this.props.restaurants,
     flightsReturn: [],
-    flightsDeparture: []
+    flightsDeparture: [],
+    flightsBooked: []
   };
 
   removeItemHandler = (id) => {
@@ -130,7 +131,10 @@ class App extends Component {
           />
           <Route
             path="/flights"
-            render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
+            render={() => <Flights flightsReturn={this.state.flightsReturn} 
+                                  flightsDeparture={this.state.flightsDeparture}
+                                  addFlight={this.addFlight}
+                                   />}
           />
           <Route
             path="/itinerary"
@@ -139,6 +143,7 @@ class App extends Component {
                 removeItem={this.removeItemHandler}
                 restaurants={this.state.restaurants.slice(0,3)}
                 refreshItem={this.refreshItemHandler}
+                flightsBooked={this.state.flightsBooked}
               />
             )}
           />
