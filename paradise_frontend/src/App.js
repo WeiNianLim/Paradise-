@@ -15,7 +15,8 @@ class App extends Component {
     restaurants: [],
     displayRestaurants: [],
     flightsReturn: [],
-    flightsDeparture: []
+    flightsDeparture: [],
+    flightsBooked: []
   };
 
   removeItemHandler = id => {
@@ -105,10 +106,25 @@ class App extends Component {
       });
   };
 
-  //-----flights page refresh function ----//
-  getDepFlights = () => {};
+  addFlight = (flight) => {
+    console.log(this.state.flightsBooked)
+    this.setState({
+      flightsBooked: this.state.flightsBooked.concat(flight)
+    },()=> {console.log(this.state.flightsBooked)})
+  }
 
-  getRetFlights = () => {};
+  //-----flights page refresh function ----//
+  // getDepFlights = () => {
+  //   this.setState({
+  //     flightsInfo: this.state.flightsInfo()
+  //   })
+  // }
+
+  // getRetFlights = () => {
+    
+  // }
+  
+  
 
   render() {
     return (
@@ -132,12 +148,10 @@ class App extends Component {
           />
           <Route
             path="/flights"
-            render={() => (
-              <Flights
-                flightsReturn={this.state.flightsReturn}
-                flightsDeparture={this.state.flightsDeparture}
-              />
-            )}
+            render={() => <Flights flightsReturn={this.state.flightsReturn} 
+                                  flightsDeparture={this.state.flightsDeparture}
+                                  addFlight={this.addFlight}
+                                   />}
           />
           <Route
             path="/itinerary"
@@ -146,6 +160,7 @@ class App extends Component {
                 removeItem={this.removeItemHandler}
                 restaurants={this.state.displayRestaurants}
                 refreshItem={this.refreshItemHandler}
+                flightsBooked={this.state.flightsBooked}
               />
             )}
           />
