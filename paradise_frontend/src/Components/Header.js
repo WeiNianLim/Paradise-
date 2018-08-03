@@ -23,7 +23,7 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarColor03" wfd-id="431">
           <ul className="navbar-nav mr-auto" wfd-id="433" />
           <form className="form-inline my-2 my-lg-0" wfd-id="432">
-            <button type="button" class="btn btn-outline-info" wfd-id="569">
+            <button type="button" className="btn btn-outline-info" wfd-id="569">
               Log In
             </button>
           </form>

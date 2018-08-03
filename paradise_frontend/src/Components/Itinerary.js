@@ -13,21 +13,17 @@ class Itinerary extends Component {
       window.print()
   }
 
-  removeItemHandler=(index)=>{
-
-  }
 
   render() {
     return (
       <div>
           <button className='btn btn-success' onClick={()=> this.printWindow()}>Create PDF</button>
-            <h1>August 10,2018</h1>
-            {console.log(this.props.restaurantState)}
-            {this.props.restaurants.map((item, index) => {
-          console.log(item.name);
+        <h1>August 10,2018</h1>
+        {this.props.restaurants.map((item, index) => {
           return (
               <div className="ItineraryItem">
-                    <Activity
+              {this.props.restaurants.length > 1 
+               ?     <Activity
                     name={item.name}
                     contact={item.display_phone}
                     location={item.location.address1 +
@@ -36,12 +32,13 @@ class Itinerary extends Component {
                     }
                     item={this.props.restaurants[index]}
                     removeItem={this.props.removeItem}
+                    refreshItem={this.props.refreshItem}
                     />
+                : <h1>Loading</h1>}
             </div>
           );
         })}
-        
-
+            {console.log(this.props.restaurants)}
       </div>
     );
   }

@@ -42,6 +42,10 @@
   font-weight: 900;
 }
 
+.text-left{
+  width: 100%
+}
+
 .flightCard {
   background-color: rgba(255, 255, 255, 0.856);
   margin-top: 5px;

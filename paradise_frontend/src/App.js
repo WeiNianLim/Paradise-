@@ -11,41 +11,42 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
-  constructor(){
-    super()
-    this.state = {
-      flightsReturn : [],
-      flightsDeparture : [],
-      flightsBooked: []
-    }
-  }
-  
+  state = {
+    restaurants: this.props.restaurants,
+    flightsReturn: [],
+    flightsDeparture: []
+  };
 
   removeItemHandler = (id) => {
     let itineraryArray = [...this.state.restaurants];
-    let index = itineraryArray.findIndex((res) => res.id === id)
-    itineraryArray.splice(index, 1)
+    let index = itineraryArray.findIndex(res => res.id === id);
+    itineraryArray.splice(index, 1);
     this.setState({
       restaurants: itineraryArray
-    })
+    });
+  };
+
+  refreshItemHandler = id => {
+    let itineraryArray = [...this.state.restaurants];
+    let index = itineraryArray.findIndex(res => res.id === id);
+    itineraryArray.splice(index, 1,
+      itineraryArray[Math.floor(Math.random() * (itineraryArray.length - 1))]
+    );
+    console.log(itineraryArray);
+    this.setState({
+      restaurants: itineraryArray
+    });
+  };
+
+  componentDidMount(){
+    axios.get('/search')
+        .then((response)=>{
+          console.log(response.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
   }
-
-  refreshItemHandler=(id)=>{
-    let itineraryArray=[...this.state.restaurants];
-    let index=itineraryArray.findIndex((res) => res.id === id)
-    
-
-  }
-
-  // componentDidMount(){
-  //   axios.get('/search')
-  //       .then((response)=>{
-  //         console.log(response.data)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  // }
 
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
@@ -55,8 +56,11 @@ class App extends Component {
       returnDate,
       restaurantBudget
     })
+    
     .then((response) => {
-      console.log(response.data[0])
+      this.setState({
+        restaurants: response.data[0].businesses
+      })
         this.setState({
           flightsDeparture : response.data[1].connections,
           flightsReturn : response.data[2].connections,
@@ -64,10 +68,10 @@ class App extends Component {
         console.log(response.data[1].connections)
         console.log(response.data[2].connections)
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   saveLogin = (name, password) => {
     axios
@@ -119,24 +123,26 @@ class App extends Component {
             path="/login"
             render={() => <LoginForm saveLogin={this.saveLogin} />}
           />
-          
-          <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
+
+          <Route
+            path="/form"
+            render={() => <Form mainSearchForm={this.mainSearchForm} />}
+          />
           <Route
             path="/flights"
-            render={() => <Flights flightsReturn={this.state.flightsReturn} 
-                                    flightsDeparture={this.state.flightsDeparture} 
-                                    addFlight={this.addFlight}
-                                    />}
+            render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
           />
           <Route
             path="/itinerary"
-            render={() => <Itinerary 
-              removeItem={this.removeItemHandler}
-              restaurants={this.state.restaurants}
-              flightsBooked={this.state.flightsBooked} />}
+            render={() => (
+              <Itinerary
+                removeItem={this.removeItemHandler}
+                restaurants={this.state.restaurants.slice(0,3)}
+                refreshItem={this.refreshItemHandler}
+              />
+            )}
           />
         </Switch>
-
       </div>
     );
   }

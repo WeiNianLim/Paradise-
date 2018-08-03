@@ -32,7 +32,7 @@ class Form extends Component {
                 <input type="text" name="To" required />
                 <br />
                 Departure Date:<br />
-                <input type="date" id='today'it  name="DepartDate" required />
+                <input type="date" id='today'  name="DepartDate" required />
                 <br />
                 Return Date:<br />
                 <input type="date" name="ReturnDate" required />
