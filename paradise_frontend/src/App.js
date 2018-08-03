@@ -15,8 +15,10 @@ class App extends Component {
     super()
     this.state = {
       flightsReturn : [],
-      flightsDeparture : []
+      flightsDeparture : [],
+      flightsBooked: []
     }
+  }
   
 
   removeItemHandler = (id) => {
@@ -81,14 +83,25 @@ class App extends Component {
       });
   };
 
+  addFlight = (flight) => {
+    console.log(this.state.flightsBooked)
+    this.setState({
+      flightsBooked: this.state.flightsBooked.concat(flight)
+    },()=> {console.log(this.state.flightsBooked)})
+  }
+
   //-----flights page refresh function ----//
-  getDepFlights = () => {
+  // getDepFlights = () => {
+  //   this.setState({
+  //     flightsInfo: this.state.flightsInfo()
+  //   })
+  // }
+
+  // getRetFlights = () => {
     
-  }
-
-  getRetFlights = () => {
-
-  }
+  // }
+  
+  
 
   render() {
     return (
@@ -110,20 +123,17 @@ class App extends Component {
           <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
-<<<<<<< Updated upstream
-            render={() => <Flights flights={this.state.flightsInfo}
-                                   getDepFlights={this.getDepFlights}
-                                   getRetFlights={this.getRetFlights}
-             />}
-=======
-            render={() => <Flights flightsReturn={this.state.flightsReturn} flightsDeparture={this.state.flightsDeparture} />}
->>>>>>> Stashed changes
+            render={() => <Flights flightsReturn={this.state.flightsReturn} 
+                                    flightsDeparture={this.state.flightsDeparture} 
+                                    addFlight={this.addFlight}
+                                    />}
           />
           <Route
             path="/itinerary"
             render={() => <Itinerary 
               removeItem={this.removeItemHandler}
-              restaurants={this.state.restaurants} />}
+              restaurants={this.state.restaurants}
+              flightsBooked={this.state.flightsBooked} />}
           />
         </Switch>
 
