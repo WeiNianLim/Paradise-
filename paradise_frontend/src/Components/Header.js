@@ -8,7 +8,7 @@ const Header = () => {
           Logo
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarColor03"
@@ -20,9 +20,9 @@ const Header = () => {
           <span class="navbar-toggler-icon" wfd-id="439" />
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor03" wfd-id="431">
-          <ul class="navbar-nav mr-auto" wfd-id="433" />
-          <form class="form-inline my-2 my-lg-0" wfd-id="432">
+        <div className="collapse navbar-collapse" id="navbarColor03" wfd-id="431">
+          <ul className="navbar-nav mr-auto" wfd-id="433" />
+          <form className="form-inline my-2 my-lg-0" wfd-id="432">
             <button type="button" class="btn btn-outline-info" wfd-id="569">
               Log In
             </button>

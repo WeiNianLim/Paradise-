@@ -200,7 +200,9 @@ const flights = [{
 
 ReactDOM.render((
     <Router>
-        <App flights={flights} restaurants={restaurants.businesses}/>
+        <App 
+        flights={flights} 
+        restaurants={restaurants.businesses}/>
     </Router>
 ), document.getElementById('root'));
 

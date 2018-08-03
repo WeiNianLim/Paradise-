@@ -11,30 +11,35 @@ import axios from "axios";
 
 class App extends Component {
   
-  state={
-    restaurants:this.props.restaurants,
-  }
+    state = {
+      flightsInfo : [],
+      restaurants: this.props.restaurants
+    }
+  
 
   removeItemHandler = (id) => {
     let itineraryArray = [...this.state.restaurants];
     let index = itineraryArray.findIndex((res) => res.id === id)
     itineraryArray.splice(index, 1)
     this.setState({
-      restaurants:itineraryArray
+      restaurants: itineraryArray
     })
-    console.log(this.state.restaurants)
-    console.log(itineraryArray)
   }
 
-  mainSearchForm = (city, departureDate, returnDate, budget) => {
+  mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
-      city,
+      from,
+      to,
       departureDate,
       returnDate,
-      budget
+      restaurantBudget
     })
-      .then((response) => {
-        console.log(response.data)
+    .then((response) => {
+      console.log(response.data)
+        this.setState({
+          flightsInfo : response.data[1].connections
+        })
+        console.log(response.data[1].connections)
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +78,7 @@ class App extends Component {
           <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
-            render={() => <Flights flights={this.props.flights} />}
+            render={() => <Flights flights={this.state.flightsInfo} />}
           />
           <Route
             path="/itinerary"

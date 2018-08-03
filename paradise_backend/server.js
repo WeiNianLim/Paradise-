@@ -18,27 +18,32 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-let dyear, dmonth, dday, ryear, rmonth, rday = ''
+let departYear, departMonth, departDay, returnYear, returnMonth, returnDay = ''
 
 app.get('/', (req, res) => {
     res.send('hello')
 })
 
 app.post('/search', (req, res) => {
-    const { city, departureDate, returnDate, budget} = req.body
-    // dyear = departureDate.substring(0,4)
-    // dmonth = departureDate.substring(5,7)
-    // dday = departureDate.substring(8,10)
+    const { from, to, departureDate, returnDate, restaurantBudget } = req.body
     console.log(departureDate)
 
+    let priceStr = null
+    if (restaurantBudget.length > 1)
+        priceStr = restaurantBudget.slice(0, -1).join(',') + "," + restaurantBudget[restaurantBudget.length - 1]
+    else priceStr = restaurantBudget[0]
+    departYear = departureDate.slice(0, 4)
+    departMonth = departureDate.slice(5, 7)
+    departDay = departureDate.slice(8, 10)
+    console.log(departDay)
     axios.all([
-            axios.get(`https://api.yelp.com/v3/businesses/search?location=${city}&term=restaurants`),
-            axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/firstflightin/YVR/to/LAX/arriving_before/${departureDate}/10/10/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`)
-        ]).then(axios.spread(function (restaurantResponse, flightResponse) {
-            res.send([restaurantResponse.data, flightResponse.data])
-            console.log('Restaurant', restaurantResponse.data);
-            console.log('Flight', flightResponse.data);
-          }));
+        axios.get(`https://api.yelp.com/v3/businesses/search?location=${to}&term=restaurants&price=${priceStr}&limit=50`),
+        axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/firstflightin/YVR/to/LAX/arriving_before/${departYear}/${departMonth}/${departDay}/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`)
+    ]).then(axios.spread(function (restaurantResponse, flightResponse) {
+        res.send([restaurantResponse.data, flightResponse.data])
+        console.log('Restaurant', restaurantResponse.data);
+        console.log('Flight', flightResponse.data);
+    }));
 })
 
 app.post('/login', (req, res) => {
