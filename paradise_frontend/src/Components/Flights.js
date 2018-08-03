@@ -49,11 +49,17 @@ class Flights extends Component {
                      : <h1>Loading</h1>}
                     {departFlightsMapped.length > 0  ? departFlightsMapped : <h1>Loading</h1>}
                 </div>
+                <div>
+                    <button className='btn btn-success' onClick={()=> this.props.getDepFlights}>Refresh</button>
+                </div>
                 <div className='flightsList'>
                     {returnFlightsMapped.length > 0
                         ? <h1 className='flightsTitle'>Flights departing from {this.props.flightsReturn[0].scheduledFlight[0].departureAirportFsCode}</h1> 
                         : <h1>Loading</h1>}
                     {returnFlightsMapped.length > 0 ? returnFlightsMapped : <h1>Loading</h1>}
+                </div>
+                <div>
+                    <button classNmae='btn btn-success' onClick={()=> this.props.getRetFlights}>Refresh</button>
                 </div>
             </div>
         )

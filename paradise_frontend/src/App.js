@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+
 import Home from "./Components/Home";
 import Form from "./Components/FilterForm";
 import Header from "./Components/Header";
@@ -59,9 +60,20 @@ class App extends Component {
         console.log(error);
       });
   };
+
+  //-----flights page refresh function ----//
+  getDepFlights = () => {
+    
+  }
+
+  getRetFlights = () => {
+
+  }
+
   render() {
     return (
       <div className="App">
+     
         <Header />
 
         <Link to="/">Home</Link>
@@ -78,7 +90,10 @@ class App extends Component {
           <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
-            render={() => <Flights flights={this.state.flightsInfo} />}
+            render={() => <Flights flights={this.state.flightsInfo}
+                                   getDepFlights={this.getDepFlights}
+                                   getRetFlights={this.getRetFlights}
+             />}
           />
           <Route
             path="/itinerary"
