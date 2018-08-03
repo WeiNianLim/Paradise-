@@ -14,6 +14,7 @@ app.listen(port, () => {
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     res.send('hello')
@@ -30,4 +31,9 @@ app.post('/search', (req, res) => {
         .catch((err) => {
             console.log(err)
         })
+})
+
+app.post('/login', (req, res) => {
+    console.log(req.body.name + " " + req.body.password)
+    res.json(req.body)
 })
