@@ -4,9 +4,8 @@ class Form extends Component {
   render(){
   return (
     <div>
-
       <div>
-      <form method="post" action="/search" className='searchForm' autocomplete="off">
+      <form method="post" action="/search" className='searchForm' autoComplete="off">
         <div className='row text-left'>
           <div className='col-2 offset-4'>
                 City:<br />
@@ -25,7 +24,7 @@ class Form extends Component {
                 <br />
             </div>
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" className="btn btn-success">Submit</button>
       </form>
       </div>
     </div>

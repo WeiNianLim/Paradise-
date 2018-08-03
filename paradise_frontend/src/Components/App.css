@@ -23,6 +23,22 @@
   padding-top: 40vh;
 }
 
+.flightsImage {
+  height: 50px;
+}
 
+.flightsList {
+  width: 75%;
+  margin: 50px auto 0px auto;
+}
 
+.flightsTitle {
+  margin-bottom: 25px;
+}
+
+.flightCard {
+  background-color: rgba(0, 0, 0, 0.664);
+  margin-top: 20px;
+  padding: 25px;
+}
 
