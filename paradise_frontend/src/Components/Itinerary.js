@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Activity from "./Activity";
-import styles from "./Itinerary.css"
+import "./Itinerary.css"
 
 class Itinerary extends Component {
   constructor(props) {
@@ -16,14 +16,13 @@ class Itinerary extends Component {
         {this.props.restaurants.map((item, index) => {
           console.log(item.name);
           return (
-              <div className={styles.itineraryItem}>
+              <div className="ItineraryItem">
             <Activity
               name={item.name}
               contact={item.display_phone}
-              location={
-                item.location.address1 + 
-                " " + 
-                item.location.display_address[1]
+              location={item.location.address1 +
+                 " " + 
+                 item.location.display_address[1]
               }
             />
             <button>Delete</button>
