@@ -3,13 +3,10 @@ import React, {Component} from 'react'
 class Flights extends Component {
     
     render(){
-        console.log(this.props.flights)
-        const {flights} = this.props
-        const {returnFlights} = this.props
-        let returnFlightsMapped = []
-        let departFlightsMapped = []
-        if (flights !== 0){
-            departFlightsMapped = this.props.flights.map((flight) => {
+        const {flightsReturn, flightsDeparture} = this.props
+        let returnFlightsMapped, departFlightsMapped = []
+        if (flightsDeparture !== 0){
+            departFlightsMapped = this.props.flightsDeparture.map((flight) => {
                 return(
                     <div className="media flightCard">
                         <img className="mr-3 flightsImage" src="http://104.236.16.159/wp-content/uploads/2013/03/Screen-shot-2013-03-17-at-11.27.43-PM.png" alt="Generic placeholder image"/>
@@ -26,8 +23,8 @@ class Flights extends Component {
                 })
         }
 
-        if (returnFlights !== 0){
-            returnFlightsMapped = this.props.retrunFlights.map((flight)=>{
+        if (flightsReturn !== 0){
+            returnFlightsMapped = this.props.flightsReturn.map((flight)=>{
                 return(
                     <div className="media flightCard">
                         <img className="mr-3 flightsImage" src="http://104.236.16.159/wp-content/uploads/2013/03/Screen-shot-2013-03-17-at-11.27.43-PM.png" alt="Generic placeholder image"/>
@@ -47,12 +44,16 @@ class Flights extends Component {
         return(
             <div> 
                 <div className='flightsList'>
-                    {/* <h1 className='flightsTitle'>Flights departing from {this.props.flights[0].arrivalAirportFsCode}</h1> */}
-                    {departFlightsMapped.length > 0 ? departFlightsMapped : <h1>Departure flights Loading....</h1>}
+                    {departFlightsMapped.length > 0
+                     ? <h1 className='flightsTitle'>Flights departing from {this.props.flightsDeparture[0].scheduledFlight[0].departureAirportFsCode}</h1> 
+                     : <h1>Loading</h1>}
+                    {departFlightsMapped.length > 0  ? departFlightsMapped : <h1>Loading</h1>}
                 </div>
                 <div className='flightsList'>
-                    {/* <h1 className='flightsTitle'>Flights returning from {this.props.flights[0].departureAirportFsCode}</h1> */}
-                    {returnFlightsMapped.length > 0 ? returnFlightsMapped : <h1>Return flights Loading...</h1>}
+                    {returnFlightsMapped.length > 0
+                        ? <h1 className='flightsTitle'>Flights departing from {this.props.flightsReturn[0].scheduledFlight[0].departureAirportFsCode}</h1> 
+                        : <h1>Loading</h1>}
+                    {returnFlightsMapped.length > 0 ? returnFlightsMapped : <h1>Loading</h1>}
                 </div>
             </div>
         )
