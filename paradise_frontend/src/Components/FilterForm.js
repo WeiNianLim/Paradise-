@@ -27,12 +27,12 @@ class Form extends Component {
             <div className='row text-left'>
               <div className='col-2 offset-4'>
                 Leaving From:<br />
-                <input type="text" name="From" required />
+                <input type="text" name="From" placeholder="City or Country" required />
                 Going to:<br />
-                <input type="text" name="To" required />
+                <input type="text" name="To" placeholder="City or Country" required />
                 <br />
                 Departure Date:<br />
-                <input type="date" id='today'  name="DepartDate" required />
+                <input type="date" id='today' name="DepartDate" required />
                 <br />
                 Return Date:<br />
                 <input type="date" name="ReturnDate" required />
