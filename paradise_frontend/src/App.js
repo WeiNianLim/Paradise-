@@ -11,10 +11,14 @@ import axios from 'axios'
 
 class App extends Component {
 
-  mainSearchForm = (city, deptureDate, returnDate, budget) => {
+  state = {
+    flights : []
+  }
+
+  mainSearchForm = (city, departureDate, returnDate, budget) => {
     axios.post('/search', {
       city,
-      deptureDate,
+      departureDate,
       returnDate,
       budget
     })
