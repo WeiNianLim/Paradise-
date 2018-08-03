@@ -25,7 +25,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-    const { city, departureDate, returnDate, budget} = req.body
+    const { city, departureDate, returnDate, restaurantBudget} = req.body
+    console.log(departureDate)
+    console.log(restaurantBudget)
     departYear = departureDate.slice(0,4)
     departMonth = departureDate.slice(5,7)
     departDay = departureDate.slice(8,10)

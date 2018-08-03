@@ -10,7 +10,6 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
-
   constructor(){
     super()
     this.state = {
@@ -18,14 +17,13 @@ class App extends Component {
     }
   }
 
-  mainSearchForm = (city, departureDate, returnDate, budget) => {
+  mainSearchForm = (city, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
       city,
       departureDate,
       returnDate,
-      budget
-    })
-      .then((response) => {
+      restaurantBudget
+    }.then((response) => {
         this.setState({
           flightsInfo : response.data[1].connections
         })
