@@ -17,14 +17,16 @@ class App extends Component {
     }
   }
 
-  mainSearchForm = (city, departureDate, returnDate, restaurantBudget) => {
+  mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
-      city,
+      from,
+      to,
       departureDate,
       returnDate,
       restaurantBudget
     })
     .then((response) => {
+      console.log(response.data)
         this.setState({
           flightsInfo : response.data[1].connections
         })

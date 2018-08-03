@@ -13,11 +13,11 @@ class Form extends Component {
         <div>
           <form onSubmit={(e) => {
             e.preventDefault()
-            const { City, DepartDate, ReturnDate, $, $$, $$$, $$$$ } = e.target
+            const { From, To, DepartDate, ReturnDate, $, $$, $$$, $$$$ } = e.target
             let tempBudget = [$,$$,$$$,$$$$].filter((item) => item.checked)
             let restaurantBudget = tempBudget.map((item) => item.value)
 
-            this.props.mainSearchForm(City.value, DepartDate.value, ReturnDate.value, restaurantBudget)
+            this.props.mainSearchForm(From.value, To.value, DepartDate.value, ReturnDate.value, restaurantBudget)
             this.setState({
               loggedOn: true
             })
@@ -26,9 +26,9 @@ class Form extends Component {
             <div className='row text-left'>
               <div className='col-2 offset-4'>
                 Leaving From:<br />
-                <input type="text" name="City" required />
+                <input type="text" name="From" required />
                 Going to:<br />
-                <input type="text" name="City" required />
+                <input type="text" name="To" required />
                 <br />
                 Departure Date:<br />
                 <input type="date" name="DepartDate" required />

@@ -25,7 +25,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-    const { city, departureDate, returnDate, restaurantBudget} = req.body
+    const { from, to, departureDate, returnDate, restaurantBudget } = req.body
+    let priceStr = null
+    if (restaurantBudget.length > 1)
+        priceStr = restaurantBudget.slice(0, -1).join(',') + "," + restaurantBudget[restaurantBudget.length - 1]
+    else priceStr = restaurantBudget[0]
     console.log(departureDate)
     console.log(returnDate)
     console.log(restaurantBudget)
@@ -37,7 +41,7 @@ app.post('/search', (req, res) => {
     returnDay = returnDate.slice(8,10)
     
     axios.all([
-            axios.get(`https://api.yelp.com/v3/businesses/search?location=${city}&term=restaurants`),
+            axios.get(`https://api.yelp.com/v3/businesses/search?location=${to}&term=restaurants&price=${priceStr}&limit=50`),
             axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/firstflightin/YVR/to/LAX/arriving_before/${departYear}/${departMonth}/${departDay}/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`),
             axios.get(`https://api.flightstats.com/flex/connections/rest/v2/json/lastflightin/LAX/to/YVR/arriving_before/${departYear}/${departMonth}/${departDay}/00/00?appId=${flightAppId}&appKey=${flightApiKey}&numHours=6&maxConnections=1&includeSurface=false&payloadType=passenger&includeCodeshares=true&includeMultipleCarriers=true`)
         ]).then(axios.spread(function (restaurantResponse, flightDepartureResponse, flightReturningResponse){
