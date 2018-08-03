@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Link} from 'react-router-dom'
 import Home from './Components/Home'
 import Form from './Components/FilterForm'
 import Header from './Components/Header'
@@ -24,8 +24,12 @@ class App extends Component {
     })
   }
   render() {
+    console.log(this.props.flights)
     return (
       <div className="App">
+      <Link to='/'>Home</Link>
+      <Link to='/flights'>FLIGHTS</Link>
+      <Link to='/form'>Form</Link>
             <Switch>
               <Route exact path='/' render={()=>
               <Home />
@@ -36,9 +40,9 @@ class App extends Component {
               <Route path='/form' render={()=> 
                 <Form />
               }/>
-              {/* <Route path='/flights' render={()=>{
+              <Route path='/flights' render={()=>
                 <Flights flights={this.props.flights}/>
-              }}/> */}
+              }/>
             </Switch>
       </div>
     );
