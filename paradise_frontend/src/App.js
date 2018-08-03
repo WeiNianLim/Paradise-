@@ -42,6 +42,7 @@ class App extends Component {
     console.log(this.props.flights)
     return (
       <div className="App">
+<<<<<<< HEAD
         <Header />
         <Link to='/'>Home</Link>
         <Link to='/flights'>FLIGHTS</Link>
@@ -60,6 +61,27 @@ class App extends Component {
             <Flights flights={this.props.flights} />
           } />
         </Switch>
+=======
+      <Header />
+            
+      <Link to='/'>Home</Link>
+      <Link to='/flights'>FLIGHTS</Link>
+      <Link to='/form'>Form</Link>
+            <Switch>
+              <Route exact path='/' render={()=>
+              <Home />
+              }/>
+              <Route path='/login' render={()=> 
+                <LoginForm saveLogin={this.saveLogin}/>
+              }/>
+              <Route path='/form' render={()=> 
+                <Form />
+              }/>
+              <Route path='/flights' render={()=>
+                <Flights flights={this.props.flights}/>
+              }/>
+            </Switch>
+>>>>>>> 3884ee853fa66818ffd7dc2fabd63e84ac2a12c6
       </div>
     );
   }
