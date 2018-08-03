@@ -11,7 +11,7 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
-  
+
     state = {
       flightsInfo : [],
       restaurants: this.props.restaurants
@@ -27,6 +27,13 @@ class App extends Component {
     })
   }
 
+  refreshItemHandler=(id)=>{
+    let itineraryArray=[...this.state.restaurants];
+    let index=itineraryArray.findIndex((res) => res.id === id)
+    
+
+  }
+
   mainSearchForm = (from, to, departureDate, returnDate, restaurantBudget) => {
     axios.post('/search', {
       from,
@@ -36,7 +43,7 @@ class App extends Component {
       restaurantBudget
     })
     .then((response) => {
-      console.log(response.data)
+      console.log(response.data[0])
         this.setState({
           flightsInfo : response.data[1].connections
         })
