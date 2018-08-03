@@ -10,6 +10,22 @@ import Itinerary from "./Components/Itinerary";
 import axios from "axios";
 
 class App extends Component {
+
+  mainSearchForm = (city, departureDate, returnDate, budget) => {
+    axios.post('/search', {
+      city,
+      departureDate,
+      returnDate,
+      budget
+    })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   saveLogin = (name, password) => {
     axios
       .post("/login", {
@@ -39,7 +55,8 @@ class App extends Component {
             path="/login"
             render={() => <LoginForm saveLogin={this.saveLogin} />}
           />
-          <Route path="/form" render={() => <Form />} />
+          
+          <Route path="/form" render={() => <Form mainSearchForm={this.mainSearchForm}/>} />
           <Route
             path="/flights"
             render={() => <Flights flights={this.props.flights} />}
