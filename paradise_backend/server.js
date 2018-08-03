@@ -4,9 +4,9 @@ const axios = require('axios')
 const bodyParser = require('body-parser');
 const port = process.argv[2] || 8080
 
-const apiKey = '-IxP22jhNAIYesa0OK8lZvKWJLjOLVfXiseq4JgfBVzGlr3QbKRjlVErQ_OhkQ2bAgtUkevXXwnZf2H_CM2n_gyg21zlZ9ut8BJRgtz-eZH9XYW7jiOUFty9LHVjW3Yx';
+const yelpApiKey = '-IxP22jhNAIYesa0OK8lZvKWJLjOLVfXiseq4JgfBVzGlr3QbKRjlVErQ_OhkQ2bAgtUkevXXwnZf2H_CM2n_gyg21zlZ9ut8BJRgtz-eZH9XYW7jiOUFty9LHVjW3Yx';
 
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + apiKey;
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + yelpApiKey;
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)

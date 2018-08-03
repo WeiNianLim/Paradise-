@@ -4,7 +4,6 @@ class Form extends Component {
   render(){
   return (
     <div>
-
       <div>
       <form method="post" action="/search" className='searchForm' autoComplete="off">
         <div className='row text-left'>
