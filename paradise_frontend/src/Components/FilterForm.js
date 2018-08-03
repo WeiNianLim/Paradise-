@@ -31,10 +31,10 @@ class Form extends Component {
                 <input type="text" name="To" placeholder="City or Country" required />
                 <br />
                 Departure Date:<br />
-                <input type="date" id='today' name="DepartDate" required />
+                <input type="date" id='today' name="DepartDate" min="2018-08-03"required />
                 <br />
                 Return Date:<br />
-                <input type="date" name="ReturnDate" required />
+                <input type="date" min="2018-08-03" name="ReturnDate" required />
                 <br />
               </div>
               <div className='col-2'>
