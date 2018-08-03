@@ -11,7 +11,7 @@
 }
 
 .homeButton {
-  padding-top: 40vh;
+  padding-top: 10vh;
   color: black;
 }
 
@@ -20,25 +20,39 @@
 }
 
 .searchForm {
-  padding-top: 40vh;
+  padding-top: 10vh;
 }
 
 .flightsImage {
   height: 50px;
+  border: 1px black solid;
 }
 
 .flightsList {
   width: 75%;
-  margin: 50px auto 0px auto;
+  margin: 10px auto 0px auto;
+
 }
 
 .flightsTitle {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  background-color: rgb(228, 228, 228);
+  border-radius: 10px;
+  color: black;
+  font-weight: 900;
 }
 
 .flightCard {
-  background-color: rgba(0, 0, 0, 0.664);
-  margin-top: 20px;
+  background-color: rgb(255, 255, 255);
+  margin-top: 5px;
   padding: 25px;
+  height: auto;
+  font-size: 12px;
+  color: black;
+}
+
+.flightInfo {
+  font-size: 15px;
+  
 }
 
