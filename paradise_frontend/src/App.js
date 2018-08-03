@@ -49,6 +49,7 @@ class App extends Component {
             render={() => <Itinerary restaurants={this.props.restaurants} />}
           />
         </Switch>
+
       </div>
     );
   }
